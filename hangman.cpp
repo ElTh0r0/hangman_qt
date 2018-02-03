@@ -328,7 +328,8 @@ void Hangman::showInfoBox() {
                 "<small>%4</small><br /><br />"
                 "%5<br />"
                 "%6<br />"
-                "</center>")
+                "</center>"
+                "%7")
         .arg(qApp->applicationName())
         .arg(qApp->applicationVersion())
         .arg(APP_DESC)
@@ -338,5 +339,9 @@ void Hangman::showInfoBox() {
              "https://github.com/ElTh0r0/hangman_qt</a>")
         .arg(trUtf8("License") +
              ": <a href=\"http://www.gnu.org/licenses/gpl-3.0.html\">"
-             "GNU General Public License Version 3</a>"));
+             "GNU General Public License Version 3</a>")
+        .arg("<i>" + trUtf8("Translations") +
+             "</i><br />"
+             "&nbsp;&nbsp;- Dutch: Vistaus<br />"
+             "&nbsp;&nbsp;- German: ElThoro"));
 }

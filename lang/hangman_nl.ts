@@ -58,12 +58,12 @@
         <translation>&amp;Informatie</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="239"/>
+        <location filename="../hangman.cpp" line="242"/>
         <source>All words used!</source>
         <translation>Alle woorden zijn gebruikt!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="240"/>
+        <location filename="../hangman.cpp" line="243"/>
         <source>You played all words!
 
 You guessed %1 of %2 words.
@@ -78,44 +78,49 @@ Sie haben %1 von %2 Wörtern erraten.
 Das entspricht einer Quote von %3 %</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="262"/>
+        <location filename="../hangman.cpp" line="265"/>
         <source>It means: %1</source>
         <translation>Het betekent: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="266"/>
+        <location filename="../hangman.cpp" line="269"/>
         <source>Won</source>
         <translation>Gewonnen</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="267"/>
+        <location filename="../hangman.cpp" line="270"/>
         <source>You guessed the word!</source>
         <translation>Je hebt het woord geraden!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="269"/>
+        <location filename="../hangman.cpp" line="272"/>
         <source>Lost</source>
         <translation>Verloren</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="270"/>
+        <location filename="../hangman.cpp" line="273"/>
         <source>Unfortunately you have lost!</source>
         <translation>Helaas, je hebt verloren!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="271"/>
+        <location filename="../hangman.cpp" line="274"/>
         <source>The word was: %1</source>
         <translation>Het gezochte woord was: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="292"/>
+        <location filename="../hangman.cpp" line="337"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="294"/>
+        <location filename="../hangman.cpp" line="340"/>
         <source>License</source>
         <translation>Licentie</translation>
+    </message>
+    <message>
+        <location filename="../hangman.cpp" line="343"/>
+        <source>Translations</source>
+        <translation>Vertalingen</translation>
     </message>
 </context>
 </TS>
