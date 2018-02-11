@@ -21,9 +21,10 @@
  * along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "./hangman.h"
+
 #include <QMessageBox>
 
-#include "./hangman.h"
 #include "ui_hangman.h"
 
 Hangman::Hangman(QWidget *pParent)

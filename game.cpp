@@ -21,14 +21,15 @@
  * along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <algorithm>  // std::random_shuffle
+#include "./game.h"
+
 #include <time.h>
 
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
 
-#include "./game.h"
+#include <algorithm>  // std::random_shuffle
 
 Game::Game(const QString &sRessource) {
   std::srand(time(0));  // Seed random number generator
