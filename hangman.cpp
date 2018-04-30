@@ -240,10 +240,10 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
         QString::number(nSumCorrect) + " / " + QString::number(nPlayedWords));
 
   quint8 nPercentCorrect = nSumCorrect * 100 / nPlayedWords;
-  QMessageBox::information(this, trUtf8("All words used!"),
-                           trUtf8("You played all words!\n\n"
-                                  "You guessed %1 of %2 words.\n"
-                                  "This corresponds to a quote of %3 %")
+  QMessageBox::information(this, tr("All words used!"),
+                           tr("You played all words!\n\n"
+                              "You guessed %1 of %2 words.\n"
+                              "This corresponds to a quote of %3 %")
                            .arg(QString::number(nSumCorrect))
                            .arg(QString::number(nQuantity))
                            .arg(QString::number(nPercentCorrect)));
@@ -263,16 +263,16 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
 void Hangman::showAnswer(const QString sAnswer, const QString sWord) {
   QString sMeaning("");
   if (!sAnswer.isEmpty()) {
-    sMeaning = "\n" + QString(trUtf8("It means: %1").arg(sAnswer));
+    sMeaning = "\n" + QString(tr("It means: %1").arg(sAnswer));
   }
 
   if (sWord.isEmpty()) {
-    QMessageBox::information(this, trUtf8("Won"),
-                             trUtf8("You guessed the word!") + "\n" + sMeaning);
+    QMessageBox::information(this, tr("Won"),
+                             tr("You guessed the word!") + "\n" + sMeaning);
   } else {
-    QMessageBox::information(this, trUtf8("Lost"),
-                             trUtf8("Unfortunately you have lost!") + "\n\n" +
-                             trUtf8("The word was: %1").arg(sWord) + sMeaning);
+    QMessageBox::information(this, tr("Lost"),
+                             tr("Unfortunately you have lost!") + "\n\n" +
+                             tr("The word was: %1").arg(sWord) + sMeaning);
   }
 }
 
@@ -335,13 +335,13 @@ void Hangman::showInfoBox() {
         .arg(qApp->applicationVersion())
         .arg(APP_DESC)
         .arg(APP_COPY)
-        .arg(trUtf8("URL") +
+        .arg(tr("URL") +
              ": <a href=\"https://github.com/ElTh0r0/hangman_qt\">"
              "https://github.com/ElTh0r0/hangman_qt</a>")
-        .arg(trUtf8("License") +
+        .arg(tr("License") +
              ": <a href=\"http://www.gnu.org/licenses/gpl-3.0.html\">"
              "GNU General Public License Version 3</a>")
-        .arg("<i>" + trUtf8("Translations") +
+        .arg("<i>" + tr("Translations") +
              "</i><br />"
              "&nbsp;&nbsp;- Dutch: Vistaus<br />"
              "&nbsp;&nbsp;- German: ElThoro"));

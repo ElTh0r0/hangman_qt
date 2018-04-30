@@ -38,7 +38,7 @@ Game::Game(const QString &sRessource) {
   m_nQuantity = m_sListWords.size();
   if (m_nQuantity <= 0) {
     qCritical() << "Word list is empty!";
-    QMessageBox::critical(NULL, trUtf8("Error"), trUtf8("Word list is empty!"));
+    QMessageBox::critical(NULL, tr("Error"), tr("Word list is empty!"));
     exit(-2);
   }
   // qDebug() << "Num of Words:" << m_nQuantity;
@@ -51,8 +51,8 @@ void Game::loadWordlist(const QString &sRessource) {
   QFile dataFile(sRessource);
   if (!dataFile.open(QIODevice::ReadOnly)) {
     qCritical() << "Word list" << dataFile.fileName() << "could not be opened!";
-    QMessageBox::critical(NULL, trUtf8("Error"),
-                          trUtf8("Word list could not be opened!"));
+    QMessageBox::critical(NULL, tr("Error"),
+                          tr("Word list could not be opened!"));
     exit(-1);
   }
 
