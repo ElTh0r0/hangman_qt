@@ -46,17 +46,18 @@ class Hangman : public QMainWindow {
     ~Hangman();
 
   signals:
-    void checkLetter(const QByteArray baLetter);
+    void checkLetter(const QByteArray &baLetter);
 
   protected:
     void changeEvent(QEvent *pEvent);
 
   private slots:
     void clickLetter();
-    void updateWord(const QByteArray baWord, const quint8 nWrong,
+    void updateWord(const QByteArray &baWord, const quint8 nWrong,
                     const quint16 nCorrectInRow, const quint16 nSumCorrect,
                     const quint16 nPlayedWords, const quint16 nQuantity);
-    void showAnswer(const QString sAnswer, const QString sWord = "");
+    void showAnswer(const QString &sAnswer,
+                    const QString &sWord = QStringLiteral(""));
     void showInfoBox();
 
   private:

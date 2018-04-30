@@ -31,7 +31,8 @@
 
 #include <algorithm>  // std::random_shuffle
 
-Game::Game(const QString &sRessource) {
+Game::Game(const QString &sRessource, QObject *pParent) {
+  Q_UNUSED(pParent);
   std::srand(time(0));  // Seed random number generator
   this->loadWordlist(sRessource);
 
@@ -94,7 +95,7 @@ void Game::nextWord() {
   }
 
   sListTmp.clear();
-  sListTmp << m_sListWords[m_nPlayedWords].split(";", QString::SkipEmptyParts);
+  sListTmp << m_sListWords[m_nPlayedWords].split(';', QString::SkipEmptyParts);
   if (sListTmp.size() > 0) {
     QString sWord = sListTmp[0].trimmed();
     sWord = sWord.toUpper();
@@ -103,7 +104,7 @@ void Game::nextWord() {
     m_baShownWord.clear();
     sWord = QString('-').repeated(sWord.length());
     m_baShownWord = sWord.toLatin1();
-    m_sAnswer = "";
+    m_sAnswer = QStringLiteral("");
   }
   if (2 == sListTmp.size()) {
     m_sAnswer = sListTmp[1].trimmed();
@@ -121,7 +122,7 @@ void Game::nextWord() {
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Game::checkLetter(const QByteArray baLetter) {
+void Game::checkLetter(const QByteArray &baLetter) {
   // qDebug() << "Check letter:" << baLetter;
 
   if (m_baWord.contains(baLetter)) {

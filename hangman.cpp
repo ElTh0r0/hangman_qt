@@ -33,19 +33,13 @@ Hangman::Hangman(QWidget *pParent)
   m_pUi->setupUi(this);
   this->setWindowTitle(qApp->applicationName());
   this->loadLanguage(this->getSystemLanguage());
-  m_pGame = new Game(":/data.dat");
+  m_pGame = new Game(QStringLiteral(":/data.dat"));
   this->setupActions();
 
-  connect(m_pGame, SIGNAL(updateWord(const QByteArray, const quint8,
-                                     const quint16, const quint16,
-                                     const quint16, const quint16)),
-          this, SLOT(updateWord(const QByteArray, const quint8,
-                                const quint16, const quint16,
-                                const quint16, const quint16)));
-  connect(m_pGame, SIGNAL(showAnswer(const QString, const QString)),
-          this, SLOT(showAnswer(const QString, const QString)));
+  connect(m_pGame, &Game::updateWord, this, &Hangman::updateWord);
+  connect(m_pGame, &Game::showAnswer, this, &Hangman::showAnswer);
 
-  QFile stylefile(":/hangman.qss");
+  QFile stylefile(QStringLiteral(":/hangman.qss"));
   if (stylefile.open(QFile::ReadOnly)) {
     QString sStyleSheet = QString::fromLatin1(stylefile.readAll());
     qApp->setStyleSheet(sStyleSheet);
@@ -82,18 +76,14 @@ Hangman::~Hangman() {
 void Hangman::setupActions() {
   // Menu
   m_pUi->action_NewGame->setShortcut(QKeySequence::New);
-  connect(m_pUi->action_NewGame, SIGNAL(triggered()),
-          m_pGame, SLOT(newGame()));
-  connect(m_pUi->action_Info, SIGNAL(triggered()),
-          this, SLOT(showInfoBox()));
+  connect(m_pUi->action_NewGame, &QAction::triggered, m_pGame, &Game::newGame);
+  connect(m_pUi->action_Info, &QAction::triggered, this, &Hangman::showInfoBox);
   m_pUi->action_Quit->setShortcut(QKeySequence::Quit);
-  connect(m_pUi->action_Quit, SIGNAL(triggered()),
-          this, SLOT(close()));
+  connect(m_pUi->action_Quit, &QAction::triggered, this, &Hangman::close);
 
   for (int i = 0; i < 26; ++i) {  // Loop through ASCII A-Z (65 - 90)
     m_pButtons[i] = new QToolButton(this);
-    connect(m_pButtons[i], SIGNAL(clicked()),
-            this, SLOT(clickLetter()));
+    connect(m_pButtons[i], &QToolButton::clicked, this, &Hangman::clickLetter);
 
     m_pButtons[i]->setText(QString(static_cast<char>(i + 65)));
     m_pButtons[i]->setFocusPolicy(Qt::NoFocus);
@@ -109,8 +99,7 @@ void Hangman::setupActions() {
     }
   }
 
-  connect(this, SIGNAL(checkLetter(QByteArray)),
-          m_pGame, SLOT(checkLetter(QByteArray)));
+  connect(this, &Hangman::checkLetter, m_pGame, &Game::checkLetter);
 }
 
 // ---------------------------------------------------------------------------
@@ -122,19 +111,19 @@ void Hangman::createGallows() {
   m_pUi->graphicsView->setRenderHints(
         QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
-  QPen penGallows(QColor("#2e3436"));
+  QPen penGallows(QColor(46, 52, 54));
   penGallows.setWidth(10);
   m_pGallows1 = m_pScene->addLine(110, 235, 225, 235, penGallows);  // Base
   m_pGallows2 = m_pScene->addLine(165, 235, 165, 5, penGallows);    // Pillar
   m_pGallows2 = m_pScene->addLine(165, 5, 50, 5, penGallows);       // Beam
   m_pGallows2 = m_pScene->addLine(112, 8, 162, 58, penGallows);     // Brace
 
-  QPen penRope(QColor("#8f5902"));
+  QPen penRope(QColor(143, 89, 2));
   penRope.setWidth(7);
   m_pRope = m_pScene->addLine(56, 4, 56, 33, penRope);
   m_pRope->setVisible(false);
 
-  QPen penBody(QColor("#555753"));
+  QPen penBody(QColor(85, 87, 83));
   penBody.setWidth(5);
   m_pHead = m_pScene->addEllipse(38, 37, 36, 36, penBody);
   m_pHead->setVisible(false);
@@ -164,7 +153,7 @@ void Hangman::clickLetter() {
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Hangman::updateWord(const QByteArray baWord,
+void Hangman::updateWord(const QByteArray &baWord,
                          const quint8 nWrong,
                          const quint16 nCorrectInRow,
                          const quint16 nSumCorrect,
@@ -244,9 +233,9 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
                            tr("You played all words!\n\n"
                               "You guessed %1 of %2 words.\n"
                               "This corresponds to a quote of %3 %")
-                           .arg(QString::number(nSumCorrect))
-                           .arg(QString::number(nQuantity))
-                           .arg(QString::number(nPercentCorrect)));
+                           .arg(QString::number(nSumCorrect),
+                                QString::number(nQuantity),
+                                QString::number(nPercentCorrect)));
 
   m_pRope->setVisible(false);
   m_pHead->setVisible(false);
@@ -260,8 +249,8 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Hangman::showAnswer(const QString sAnswer, const QString sWord) {
-  QString sMeaning("");
+void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
+  QString sMeaning = QStringLiteral("");
   if (!sAnswer.isEmpty()) {
     sMeaning = "\n" + QString(tr("It means: %1").arg(sAnswer));
   }
@@ -298,7 +287,8 @@ void Hangman::loadLanguage(const QString &sLang) {
                         "_" + sLang + ".qm")) {
     qApp->installTranslator(&m_translator);
   } else {
-    if (!sLang.startsWith("en")) {  // EN is build in translation -> no file
+    if (!sLang.startsWith(QStringLiteral("en"))) {
+      // EN is build in translation -> no file
       qWarning() << "Could not load translation :/" +
                     qApp->applicationName().toLower() + "_" + sLang + ".qm";
     }
@@ -322,7 +312,7 @@ void Hangman::changeEvent(QEvent *pEvent) {
 
 void Hangman::showInfoBox() {
   QMessageBox::about(
-        this, "Info",
+        this, QStringLiteral("Info"),
         QString("<center>"
                 "<big><b>%1 %2</b></big><br />"
                 "%3<br />"
@@ -331,17 +321,17 @@ void Hangman::showInfoBox() {
                 "%6<br />"
                 "</center>"
                 "%7")
-        .arg(qApp->applicationName())
-        .arg(qApp->applicationVersion())
-        .arg(APP_DESC)
-        .arg(APP_COPY)
-        .arg(tr("URL") +
+        .arg(qApp->applicationName(),
+             qApp->applicationVersion(),
+             QStringLiteral(APP_DESC),
+             QStringLiteral(APP_COPY),
+             tr("URL") +
              ": <a href=\"https://github.com/ElTh0r0/hangman_qt\">"
-             "https://github.com/ElTh0r0/hangman_qt</a>")
-        .arg(tr("License") +
+             "https://github.com/ElTh0r0/hangman_qt</a>",
+             tr("License") +
              ": <a href=\"http://www.gnu.org/licenses/gpl-3.0.html\">"
-             "GNU General Public License Version 3</a>")
-        .arg("<i>" + tr("Translations") +
+             "GNU General Public License Version 3</a>",
+             "<i>" + tr("Translations") +
              "</i><br />"
              "&nbsp;&nbsp;- Dutch: Vistaus<br />"
              "&nbsp;&nbsp;- German: ElThoro"));
