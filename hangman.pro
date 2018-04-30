@@ -15,7 +15,7 @@
 #  along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
 
 lessThan(QT_MAJOR_VERSION, 5) {
-  error("StackAndConquer requires Qt 5.0 or greater")
+  error("Hangman requires Qt 5.0 or greater")
 }
 
 TEMPLATE      = app
