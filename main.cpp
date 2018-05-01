@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 
   if (app.arguments().contains(QStringLiteral("-v")) ||
       app.arguments().contains(QStringLiteral("--version"))) {
-    qDebug() << app.arguments()[0] << "\t" <<
+    qDebug() << app.arguments().at(0) << "\t" <<
                 app.applicationVersion() << "\n";
     exit(0);
   }
