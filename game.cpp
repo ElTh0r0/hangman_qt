@@ -127,8 +127,8 @@ void Game::checkLetter(const QByteArray &baLetter) {
 
   if (m_baWord.contains(baLetter)) {
     for (int i = 0; i < m_baWord.length(); i++) {
-      if (baLetter[0] == m_baWord[i]) {
-        m_baShownWord[i] = m_baWord[i];
+      if (baLetter.at(0) == m_baWord.at(i)) {
+        m_baShownWord[i] = m_baWord.at(i);
       }
     }
     emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow,
