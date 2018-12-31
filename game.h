@@ -30,24 +30,24 @@
 class Game : public QObject {
   Q_OBJECT
 
-  public:
+ public:
     explicit Game(const QString &sRessource, QObject *pParent = 0);
 
-  public slots:
+ public slots:
     void newGame();
     void checkLetter(const QByteArray &baLetter);
 
-  signals:
+ signals:
     void updateWord(const QByteArray &baWord, const quint8 nWrong,
                     const quint16 nCorrectInRow, const quint16 nSumCorrect,
                     const quint16 nPlayedWords, const quint16 nQuantity);
     void showAnswer(const QString &sAnswer,
-                    const QString &sWord = QStringLiteral(""));
+                    const QString &sWord = QString(""));
 
-  private slots:
+ private slots:
     void nextWord();
 
-  private:
+ private:
     void loadWordlist(const QString &sRessource);
 
     QStringList m_sListWords;

@@ -250,7 +250,7 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
 // ---------------------------------------------------------------------------
 
 void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
-  QString sMeaning = QStringLiteral("");
+  QString sMeaning = QString("");
   if (!sAnswer.isEmpty()) {
     sMeaning = "\n" + QString(tr("It means: %1").arg(sAnswer));
   }

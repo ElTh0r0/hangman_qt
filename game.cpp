@@ -104,7 +104,7 @@ void Game::nextWord() {
     m_baShownWord.clear();
     sWord = QString('-').repeated(sWord.length());
     m_baShownWord = sWord.toLatin1();
-    m_sAnswer = QStringLiteral("");
+    m_sAnswer = QString("");
   }
   if (2 == sListTmp.size()) {
     m_sAnswer = sListTmp[1].trimmed();
