@@ -144,7 +144,7 @@ void Hangman::createGallows() {
 
 void Hangman::clickLetter() {
   QToolButton *tmpBtn = qobject_cast<QToolButton *>(sender());
-  if (tmpBtn != NULL) {
+  if (tmpBtn != nullptr) {
     tmpBtn->setEnabled(false);
     emit checkLetter(tmpBtn->text().toLatin1());
   }
@@ -200,7 +200,7 @@ void Hangman::newWord(const quint16 nCorrectInRow,
 
   quint8 nPercent = 0;
   if (nPlayedWords > 0) {
-    nPercent = nSumCorrect * 100 / nPlayedWords;
+    nPercent = static_cast<quint8>(nSumCorrect * 100 / nPlayedWords);
   }
   m_pUi->lbl_CptCorrectPercent->setToolTip(QString::number(nPercent) + " %");
   m_pUi->lbl_CorrectPercent->setToolTip(QString::number(nPercent) + " %");
@@ -228,7 +228,7 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
   m_pUi->lbl_CorrectPercent->setText(
         QString::number(nSumCorrect) + " / " + QString::number(nPlayedWords));
 
-  quint8 nPercentCorrect = nSumCorrect * 100 / nPlayedWords;
+  quint8 nPercentCorrect = static_cast<quint8>(nSumCorrect * 100 / nPlayedWords);
   QMessageBox::information(this, tr("All words used!"),
                            tr("You played all words!\n\n"
                               "You guessed %1 of %2 words.\n"
@@ -299,7 +299,7 @@ void Hangman::loadLanguage(const QString &sLang) {
 // ---------------------------------------------------------------------------
 
 void Hangman::changeEvent(QEvent *pEvent) {
-  if (0 != pEvent) {
+  if (nullptr != pEvent) {
     if (QEvent::LanguageChange == pEvent->type()) {
       m_pUi->retranslateUi(this);
     }

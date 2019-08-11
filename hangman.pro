@@ -1,5 +1,5 @@
 #  This file is part of Hangman.
-#  Copyright (C) 2008-2018 Thorsten Roth
+#  Copyright (C) 2008-2019 Thorsten Roth
 #
 #  Hangman is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -26,10 +26,10 @@ unix: !macx {
        TARGET = Hangman
 }
 
-VERSION       = 4.0.1
+VERSION       = 4.0.2
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5."
-QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2018 Thorsten Roth"
+QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2019 Thorsten Roth"
 
 DEFINES      += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\" \
                 APP_VERSION=\"\\\"$$VERSION\\\"\" \

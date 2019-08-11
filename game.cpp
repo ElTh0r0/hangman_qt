@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2018 Thorsten Roth <elthoro@gmx.de>
+ * Copyright (C) 2008-2019 Thorsten Roth <elthoro@gmx.de>
  *
  * This file is part of Hangman.
  *
@@ -32,14 +32,14 @@
 #include <algorithm>  // std::random_shuffle
 
 Game::Game(const QString &sRessource, QObject *pParent) {
-  Q_UNUSED(pParent);
-  std::srand(time(0));  // Seed random number generator
+  Q_UNUSED(pParent)
+  std::srand(static_cast<unsigned int>(time(nullptr)));  // Seed num generator
   this->loadWordlist(sRessource);
 
-  m_nQuantity = m_sListWords.size();
+  m_nQuantity = static_cast<quint16>(m_sListWords.size());
   if (m_nQuantity <= 0) {
     qCritical() << "Word list is empty!";
-    QMessageBox::critical(NULL, tr("Error"), tr("Word list is empty!"));
+    QMessageBox::critical(nullptr, tr("Error"), tr("Word list is empty!"));
     exit(-2);
   }
   // qDebug() << "Num of Words:" << m_nQuantity;
@@ -52,7 +52,7 @@ void Game::loadWordlist(const QString &sRessource) {
   QFile dataFile(sRessource);
   if (!dataFile.open(QIODevice::ReadOnly)) {
     qCritical() << "Word list" << dataFile.fileName() << "could not be opened!";
-    QMessageBox::critical(NULL, tr("Error"),
+    QMessageBox::critical(nullptr, tr("Error"),
                           tr("Word list could not be opened!"));
     exit(-1);
   }

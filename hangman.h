@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2018 Thorsten Roth <elthoro@gmx.de>
+ * Copyright (C) 2008-2019 Thorsten Roth <elthoro@gmx.de>
  *
  * This file is part of Hangman.
  *
@@ -42,7 +42,7 @@ class Hangman : public QMainWindow {
   Q_OBJECT
 
  public:
-    explicit Hangman(QWidget *pParent = 0);
+    explicit Hangman(QWidget *pParent = nullptr);
     ~Hangman();
 
  signals:

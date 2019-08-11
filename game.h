@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2018 Thorsten Roth <elthoro@gmx.de>
+ * Copyright (C) 2008-2019 Thorsten Roth <elthoro@gmx.de>
  *
  * This file is part of Hangman.
  *
@@ -31,7 +31,7 @@ class Game : public QObject {
   Q_OBJECT
 
  public:
-    explicit Game(const QString &sRessource, QObject *pParent = 0);
+    explicit Game(const QString &sRessource, QObject *pParent = nullptr);
 
  public slots:
     void newGame();
