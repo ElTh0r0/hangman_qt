@@ -26,7 +26,7 @@ unix: !macx {
        TARGET = Hangman
 }
 
-VERSION       = 4.0.2
+VERSION       = 4.0.3
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5."
 QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2019 Thorsten Roth"
@@ -42,10 +42,13 @@ UI_DIR        = ./.ui
 RCC_DIR       = ./.rcc
 
 QT           += core gui widgets
+CONFIG       += c++11
 
-CONFIG       += warn_on c++11
-DEFINES      += QT_DEPRECATED_WARNINGS
-DEFINES      += QT_DISABLE_DEPRECATED_BEFORE=0x050900
+CONFIG(debug, debug|release) {
+  CONFIG     += warn_on
+  DEFINES    += QT_DEPRECATED_WARNINGS
+  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x051300
+}
 
 SOURCES      += main.cpp\
                 hangman.cpp \

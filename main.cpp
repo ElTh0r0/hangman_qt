@@ -48,12 +48,11 @@ int main(int argc, char *argv[]) {
   app.setApplicationName(QStringLiteral(APP_NAME));
   app.setApplicationVersion(QStringLiteral(APP_VERSION));
 
-  if (app.arguments().contains(QStringLiteral("-v")) ||
-      app.arguments().contains(QStringLiteral("--version"))) {
-    qDebug() << app.arguments().at(0) << "\t" <<
-                app.applicationVersion() << "\n";
-    exit(0);
-  }
+  QCommandLineParser cmdparser;
+  cmdparser.setApplicationDescription(APP_DESC);
+  cmdparser.addHelpOption();
+  cmdparser.addVersionOption();
+  cmdparser.process(app);
 
   // Create log file
   /*
