@@ -26,7 +26,7 @@ unix: !macx {
        TARGET = Hangman
 }
 
-VERSION       = 4.0.3
+VERSION       = 4.0.4
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5."
 QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2019 Thorsten Roth"
@@ -63,8 +63,8 @@ RESOURCES     = res/hangman_resources.qrc
 win32:RC_FILE = res/hangman_win.rc
 
 TRANSLATIONS += lang/hangman_de.ts \
-                lang/hangman_nl.ts \
-                lang/hangman_it.ts
+                lang/hangman_it.ts \
+                lang/hangman_nl.ts
 
 macx {
   ICON               = res/icon.icns

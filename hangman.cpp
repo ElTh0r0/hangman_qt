@@ -334,5 +334,6 @@ void Hangman::showInfoBox() {
              "<i>" + tr("Translations") +
              "</i><br />"
              "&nbsp;&nbsp;- Dutch: Vistaus<br />"
-             "&nbsp;&nbsp;- German: ElThoro"));
+             "&nbsp;&nbsp;- German: ElThoro<br />"
+             "&nbsp;&nbsp;- Italian: davi92"));
 }
