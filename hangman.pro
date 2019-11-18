@@ -63,7 +63,8 @@ RESOURCES     = res/hangman_resources.qrc
 win32:RC_FILE = res/hangman_win.rc
 
 TRANSLATIONS += lang/hangman_de.ts \
-                lang/hangman_nl.ts
+                lang/hangman_nl.ts \
+                lang/hangman_it.ts
 
 macx {
   ICON               = res/icon.icns
