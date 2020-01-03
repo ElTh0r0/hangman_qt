@@ -16,7 +16,7 @@ BEGIN
             VALUE "FileDescription",    "Hangman\0"
             VALUE "FileVersion",        "4.0.4\0"
             VALUE "InternalName",       "Hangman\0"
-            VALUE "LegalCopyright",     "Copyright (c) 2008-2019 Thorsten Roth\0"
+            VALUE "LegalCopyright",     "Copyright (c) 2008-2020 Thorsten Roth\0"
             VALUE "OriginalFilename",   "Hangman.exe\0"
             VALUE "ProductName",        "Hangman\0"
             VALUE "ProductVersion",     "4.0.4\0"
