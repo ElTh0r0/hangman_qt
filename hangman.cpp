@@ -192,8 +192,8 @@ void Hangman::updateWord(const QByteArray &baWord,
 void Hangman::newWord(const quint16 nCorrectInRow,
                       const quint16 nSumCorrect,
                       const quint16 nPlayedWords) const {
-  foreach (QToolButton *pButton, m_pButtons) {
-    pButton->setEnabled(true);
+  for (auto &button : m_pButtons) {
+    button->setEnabled(true);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
   m_pUi->lbl_CorrectPercent->setText(
@@ -222,8 +222,8 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
                         const quint16 nSumCorrect,
                         const quint16 nPlayedWords,
                         const quint16 nQuantity) {
-  foreach (QToolButton *pButton, m_pButtons) {
-    pButton->setEnabled(false);
+  for (auto &button : m_pButtons) {
+    button->setEnabled(false);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
   m_pUi->lbl_CorrectPercent->setText(
