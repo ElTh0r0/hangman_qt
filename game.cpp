@@ -23,13 +23,12 @@
 
 #include "./game.h"
 
-#include <time.h>
-
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
 
-#include <algorithm>  // std::random_shuffle
+#include <ctime>
+#include <random>  // std::shuffle
 
 Game::Game(const QString &sRessource, QObject *pParent) {
   Q_UNUSED(pParent)
@@ -63,9 +62,8 @@ void Game::loadWordlist(const QString &sRessource) {
     QString sLine = textStream.readLine();
     if (sLine.isNull()) {
       break;
-    } else {
-      m_sListWords.append(sLine.trimmed());
     }
+    m_sListWords.append(sLine.trimmed());
   }
 }
 
@@ -78,7 +76,8 @@ void Game::newGame() {
   m_nCorrectInRow = 0;
 
   // Shuffel questions
-  std::random_shuffle(m_sListWords.begin(), m_sListWords.end());
+  std::shuffle(m_sListWords.begin(), m_sListWords.end(),
+               std::mt19937(std::random_device()()));
   this->nextWord();
 }
 
@@ -89,14 +88,14 @@ void Game::nextWord() {
   static QStringList sListTmp;
 
   if (m_nPlayedWords >= m_nQuantity) {
-    emit updateWord("", 112, m_nCorrectInRow, m_nSumCorrect,
+    emit updateWord("", Game::PLAYEDALL, m_nCorrectInRow, m_nSumCorrect,
                     m_nPlayedWords, m_nQuantity);
     return;
   }
 
   sListTmp.clear();
   sListTmp << m_sListWords[m_nPlayedWords].split(';', QString::SkipEmptyParts);
-  if (sListTmp.size() > 0) {
+  if (!sListTmp.isEmpty()) {
     QString sWord = sListTmp[0].trimmed();
     sWord = sWord.toUpper();
     m_baWord.clear();
@@ -110,7 +109,7 @@ void Game::nextWord() {
     m_sAnswer = sListTmp[1].trimmed();
   }
 
-  emit updateWord(m_baShownWord, 111, m_nCorrectInRow,
+  emit updateWord(m_baShownWord, Game::NEWRORD, m_nCorrectInRow,
                   m_nSumCorrect, m_nPlayedWords, m_nQuantity);
   m_nCntFalse = 0;
   m_nPlayedWords++;
@@ -144,7 +143,7 @@ void Game::checkLetter(const QByteArray &baLetter) {
     m_nCntFalse++;
     emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow,
                     m_nSumCorrect, m_nPlayedWords, m_nQuantity);
-    if (7 == m_nCntFalse) {
+    if (Game::MAXTRIES == m_nCntFalse) {
       m_nCorrectInRow = 0;
       emit showAnswer(m_sAnswer, QString(m_baWord));
       this->nextWord();

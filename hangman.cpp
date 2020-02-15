@@ -32,7 +32,7 @@ Hangman::Hangman(QWidget *pParent)
     m_pUi(new Ui::Hangman) {
   m_pUi->setupUi(this);
   this->setWindowTitle(qApp->applicationName());
-  this->loadLanguage(this->getSystemLanguage());
+  this->loadLanguage(Hangman::getSystemLanguage());
   m_pGame = new Game(QStringLiteral(":/data.dat"));
   this->setupActions();
 
@@ -82,20 +82,21 @@ void Hangman::setupActions() {
   connect(m_pUi->action_Quit, &QAction::triggered, this, &Hangman::close);
 
   for (int i = 0; i < 26; ++i) {  // Loop through ASCII A-Z (65 - 90)
-    m_pButtons[i] = new QToolButton(this);
-    connect(m_pButtons[i], &QToolButton::clicked, this, &Hangman::clickLetter);
+    m_pButtons.append(new QToolButton(this));
+    connect(m_pButtons.last(), &QToolButton::clicked,
+            this, &Hangman::clickLetter);
 
-    m_pButtons[i]->setText(QString(static_cast<char>(i + 65)));
-    m_pButtons[i]->setFocusPolicy(Qt::NoFocus);
-    m_pButtons[i]->setMinimumHeight(33);
-    m_pButtons[i]->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    m_pButtons.last()->setText(QString(static_cast<char>(i + 65)));
+    m_pButtons.last()->setFocusPolicy(Qt::NoFocus);
+    m_pButtons.last()->setMinimumHeight(33);
+    m_pButtons.last()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     if (i < 24) {
-      m_pUi->grid_Buttons->addWidget(m_pButtons[i], i / 6, i % 6);
+      m_pUi->grid_Buttons->addWidget(m_pButtons.last(), i / 6, i % 6);
     } else if (24 == i) {
-      m_pUi->grid_Buttons->addWidget(m_pButtons[i], i / 6, 2);
+      m_pUi->grid_Buttons->addWidget(m_pButtons.last(), i / 6, 2);
     } else {
-      m_pUi->grid_Buttons->addWidget(m_pButtons[i], i / 6, 3);
+      m_pUi->grid_Buttons->addWidget(m_pButtons.last(), i / 6, 3);
     }
   }
 
@@ -143,7 +144,7 @@ void Hangman::createGallows() {
 // ---------------------------------------------------------------------------
 
 void Hangman::clickLetter() {
-  QToolButton *tmpBtn = qobject_cast<QToolButton *>(sender());
+  auto *tmpBtn = qobject_cast<QToolButton *>(sender());
   if (tmpBtn != nullptr) {
     tmpBtn->setEnabled(false);
     emit checkLetter(tmpBtn->text().toLatin1());
@@ -176,10 +177,10 @@ void Hangman::updateWord(const QByteArray &baWord,
       break;
     case 7: m_pLegRight->setVisible(true);
       break;
-    case 111: this->newWord(nCorrectInRow, nSumCorrect, nPlayedWords);
+    case Game::NEWRORD: this->newWord(nCorrectInRow, nSumCorrect, nPlayedWords);
       break;
-    case 112: this->playedAll(nCorrectInRow, nSumCorrect,
-                              nPlayedWords, nQuantity);
+    case Game::PLAYEDALL: this->playedAll(nCorrectInRow, nSumCorrect,
+                                          nPlayedWords, nQuantity);
       break;
     default: break;
   }
@@ -191,8 +192,8 @@ void Hangman::updateWord(const QByteArray &baWord,
 void Hangman::newWord(const quint16 nCorrectInRow,
                       const quint16 nSumCorrect,
                       const quint16 nPlayedWords) const {
-  for (int i = 0; i < 26; ++i) {
-    m_pButtons[i]->setEnabled(true);
+  foreach (QToolButton *pButton, m_pButtons) {
+    pButton->setEnabled(true);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
   m_pUi->lbl_CorrectPercent->setText(
@@ -221,14 +222,14 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
                         const quint16 nSumCorrect,
                         const quint16 nPlayedWords,
                         const quint16 nQuantity) {
-  for (int i = 0; i < 26; ++i) {
-    m_pButtons[i]->setEnabled(false);
+  foreach (QToolButton *pButton, m_pButtons) {
+    pButton->setEnabled(false);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
   m_pUi->lbl_CorrectPercent->setText(
         QString::number(nSumCorrect) + " / " + QString::number(nPlayedWords));
 
-  quint8 nPercentCorrect = static_cast<quint8>(nSumCorrect * 100 / nPlayedWords);
+  auto nPercentCorrect = static_cast<quint8>(nSumCorrect * 100 / nPlayedWords);
   QMessageBox::information(this, tr("All words used!"),
                            tr("You played all words!\n\n"
                               "You guessed %1 of %2 words.\n"
@@ -268,7 +269,7 @@ void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-QString Hangman::getSystemLanguage() {
+auto Hangman::getSystemLanguage() -> QString {
 #ifdef Q_OS_UNIX
     QByteArray lang = qgetenv("LANG");
     if (!lang.isEmpty()) {

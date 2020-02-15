@@ -43,7 +43,7 @@ void LoggingHandler(QtMsgType type,
                     const QMessageLogContext &context,
                     const QString &sMsg);
 
-int main(int argc, char *argv[]) {
+auto main(int argc, char *argv[]) -> int {
   QApplication app(argc, argv);
   app.setApplicationName(QStringLiteral(APP_NAME));
   app.setApplicationVersion(QStringLiteral(APP_VERSION));
@@ -113,7 +113,6 @@ void setupLogger(const QString &sDebugFilePath,
 void LoggingHandler(QtMsgType type,
                     const QMessageLogContext &context,
                     const QString &sMsg) {
-  QString sMsg2(sMsg);
   QString sContext = sMsg + " (" +
                      QString(context.file) + ":" +
                      QString::number(context.line) + ", " +
@@ -122,7 +121,7 @@ void LoggingHandler(QtMsgType type,
 
   switch (type) {
     case QtDebugMsg:
-      out << sTime << " Debug: " << sMsg2 << "\n";
+      out << sTime << " Debug: " << sMsg << "\n";
       out.flush();
       break;
     case QtWarningMsg:

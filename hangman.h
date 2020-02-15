@@ -62,7 +62,7 @@ class Hangman : public QMainWindow {
 
  private:
     void setupActions();
-    QString getSystemLanguage();
+    static auto getSystemLanguage() -> QString;
     void loadLanguage(const QString &sLang);
     void createGallows();
     void newWord(const quint16 nCorrectInRow,
@@ -74,19 +74,19 @@ class Hangman : public QMainWindow {
     Ui::Hangman *m_pUi;
     QTranslator m_translator;
     Game *m_pGame;
-    QToolButton *m_pButtons[26];
-    QGraphicsScene *m_pScene;
-    QGraphicsLineItem *m_pGallows1;
-    QGraphicsLineItem *m_pGallows2;
-    QGraphicsLineItem *m_pGallows3;
-    QGraphicsLineItem *m_pGallows4;
-    QGraphicsLineItem *m_pRope;
-    QGraphicsEllipseItem *m_pHead;
-    QGraphicsLineItem *m_pBody;
-    QGraphicsLineItem *m_pArmLeft;
-    QGraphicsLineItem *m_pArmRight;
-    QGraphicsLineItem *m_pLegLeft;
-    QGraphicsLineItem *m_pLegRight;
+    QList<QToolButton*> m_pButtons;
+    QGraphicsScene *m_pScene{};
+    QGraphicsLineItem *m_pGallows1{};
+    QGraphicsLineItem *m_pGallows2{};
+    QGraphicsLineItem *m_pGallows3{};
+    QGraphicsLineItem *m_pGallows4{};
+    QGraphicsLineItem *m_pRope{};
+    QGraphicsEllipseItem *m_pHead{};
+    QGraphicsLineItem *m_pBody{};
+    QGraphicsLineItem *m_pArmLeft{};
+    QGraphicsLineItem *m_pArmRight{};
+    QGraphicsLineItem *m_pLegLeft{};
+    QGraphicsLineItem *m_pLegRight{};
 };
 
 #endif  // HANGMAN_H_

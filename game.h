@@ -32,6 +32,9 @@ class Game : public QObject {
 
  public:
     explicit Game(const QString &sRessource, QObject *pParent = nullptr);
+    static const uint MAXTRIES = 7;
+    static const uint NEWRORD = 111;
+    static const uint PLAYEDALL = 112;
 
  public slots:
     void newGame();
@@ -54,11 +57,11 @@ class Game : public QObject {
     QByteArray m_baWord;
     QByteArray m_baShownWord;
     QString m_sAnswer;
-    quint8 m_nCntFalse;
+    quint8 m_nCntFalse{};
     quint16 m_nQuantity;
-    quint16 m_nPlayedWords;
-    quint16 m_nSumCorrect;
-    quint16 m_nCorrectInRow;
+    quint16 m_nPlayedWords{};
+    quint16 m_nSumCorrect{};
+    quint16 m_nCorrectInRow{};
 };
 
 #endif  // GAME_H_
