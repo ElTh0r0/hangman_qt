@@ -12,7 +12,7 @@
 #  GNU General Public License for more details.
 #
 #  You should have received a copy of the GNU General Public License
-#  along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
+#  along with Hangman.  If not, see <https://www.gnu.org/licenses/>.
 
 lessThan(QT_MAJOR_VERSION, 5) {
   error("Hangman requires Qt 5.0 or greater")

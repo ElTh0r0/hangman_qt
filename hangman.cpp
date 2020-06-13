@@ -18,7 +18,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Hangman.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Hangman.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include "./hangman.h"
@@ -331,7 +331,7 @@ void Hangman::showInfoBox() {
              ": <a href=\"https://github.com/ElTh0r0/hangman_qt\">"
              "https://github.com/ElTh0r0/hangman_qt</a>",
              tr("License") +
-             ": <a href=\"http://www.gnu.org/licenses/gpl-3.0.html\">"
+             ": <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">"
              "GNU General Public License Version 3</a>",
              "<i>" + tr("Translations") +
              "</i><br />"
