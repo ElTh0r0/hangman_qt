@@ -7,7 +7,12 @@ QGraphicsView {
   background: #f8f8f8;
 }
 
-QLabel {
+QLabel#lbl_Caption,
+QLabel#lbl_Word,
+QLabel#lbl_CorrectInRow,
+QLabel#lbl_CorrectPercent,
+QLabel#lbl_CptCorrectInRow,
+QLabel#lbl_CptCorrectPercent {
   color: #202020;
 }
 

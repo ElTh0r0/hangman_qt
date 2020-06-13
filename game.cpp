@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth <elthoro@gmx.de>
+ * Copyright (C) 2008-2020 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -36,7 +36,7 @@ Game::Game(const QString &sRessource, QObject *pParent) {
   this->loadWordlist(sRessource);
 
   m_nQuantity = static_cast<quint16>(m_sListWords.size());
-  if (m_nQuantity <= 0) {
+  if (0 == m_nQuantity) {
     qCritical() << "Word list is empty!";
     QMessageBox::critical(nullptr, tr("Error"), tr("Word list is empty!"));
     exit(-2);
@@ -94,7 +94,11 @@ void Game::nextWord() {
   }
 
   sListTmp.clear();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+  sListTmp << m_sListWords[m_nPlayedWords].split(';', Qt::SkipEmptyParts);
+#else
   sListTmp << m_sListWords[m_nPlayedWords].split(';', QString::SkipEmptyParts);
+#endif
   if (!sListTmp.isEmpty()) {
     QString sWord = sListTmp[0].trimmed();
     sWord = sWord.toUpper();

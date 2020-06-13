@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth <elthoro@gmx.de>
+ * Copyright (C) 2008-2020 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -42,7 +42,7 @@ Hangman::Hangman(QWidget *pParent)
   QFile stylefile(QStringLiteral(":/hangman.qss"));
   if (stylefile.open(QFile::ReadOnly)) {
     QString sStyleSheet = QString::fromLatin1(stylefile.readAll());
-    qApp->setStyleSheet(sStyleSheet);
+    this->setStyleSheet(sStyleSheet);
   } else {
     qWarning() << stylefile.fileName() << "style sheet could not be loaded!";
   }
@@ -89,7 +89,8 @@ void Hangman::setupActions() {
     m_pButtons.last()->setText(QString(static_cast<char>(i + 65)));
     m_pButtons.last()->setFocusPolicy(Qt::NoFocus);
     m_pButtons.last()->setMinimumHeight(33);
-    m_pButtons.last()->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    m_pButtons.last()->setSizePolicy(QSizePolicy::Expanding,
+                                     QSizePolicy::Fixed);
 
     if (i < 24) {
       m_pUi->grid_Buttons->addWidget(m_pButtons.last(), i / 6, i % 6);
