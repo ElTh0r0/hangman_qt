@@ -4,18 +4,18 @@
 <context>
     <name>Game</name>
     <message>
-        <location filename="../game.cpp" line="42"/>
-        <location filename="../game.cpp" line="55"/>
+        <location filename="../game.cpp" line="41"/>
+        <location filename="../game.cpp" line="54"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../game.cpp" line="42"/>
+        <location filename="../game.cpp" line="41"/>
         <source>Word list is empty!</source>
         <translation>L&apos;elenco delle parole è vuoto!</translation>
     </message>
     <message>
-        <location filename="../game.cpp" line="56"/>
+        <location filename="../game.cpp" line="55"/>
         <source>Word list could not be opened!</source>
         <translation>L&apos;elenco delle parole non può essere aperto!</translation>
     </message>
@@ -58,12 +58,12 @@
         <translation>&amp;Informazioni</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="232"/>
+        <location filename="../hangman.cpp" line="234"/>
         <source>All words used!</source>
         <translation>Tutte le parole usate!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="233"/>
+        <location filename="../hangman.cpp" line="235"/>
         <source>You played all words!
 
 You guessed %1 of %2 words.
@@ -74,47 +74,47 @@ Hai indovinato %1 di %2 parole.
 Ciò corrisponde a una quota del %3 %</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="255"/>
+        <location filename="../hangman.cpp" line="257"/>
         <source>It means: %1</source>
         <translation>Significa: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="259"/>
+        <location filename="../hangman.cpp" line="261"/>
         <source>Won</source>
         <translation>Hai vinto</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="260"/>
+        <location filename="../hangman.cpp" line="262"/>
         <source>You guessed the word!</source>
         <translation>Hai indovinato la parola!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="262"/>
+        <location filename="../hangman.cpp" line="264"/>
         <source>Lost</source>
         <translation>Perso</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="263"/>
+        <location filename="../hangman.cpp" line="265"/>
         <source>Unfortunately you have lost!</source>
         <translation>Purtroppo hai perso!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="264"/>
+        <location filename="../hangman.cpp" line="266"/>
         <source>The word was: %1</source>
         <translation>La parola era: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="328"/>
+        <location filename="../hangman.cpp" line="330"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="331"/>
+        <location filename="../hangman.cpp" line="333"/>
         <source>License</source>
         <translation>Licenza</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="334"/>
+        <location filename="../hangman.cpp" line="336"/>
         <source>Translations</source>
         <translation>Traduzioni</translation>
     </message>
