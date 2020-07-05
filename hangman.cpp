@@ -23,8 +23,15 @@
 
 #include "./hangman.h"
 
+#include <QDebug>
+#include <QFile>
+#include <QGraphicsEllipseItem>
+#include <QGraphicsLineItem>
+#include <QGraphicsScene>
 #include <QMessageBox>
+#include <QToolButton>
 
+#include "./game.h"
 #include "ui_hangman.h"
 
 Hangman::Hangman(QWidget *pParent)

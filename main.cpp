@@ -27,8 +27,12 @@
  */
 
 #include <QApplication>
+#include <QCommandLineParser>
+#include <QDebug>
+#include <QFile>
 #include <QStyleFactory>
 #include <QTextStream>
+#include <QTime>
 
 #include "./hangman.h"
 

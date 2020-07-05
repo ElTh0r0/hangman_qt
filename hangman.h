@@ -24,15 +24,15 @@
 #ifndef HANGMAN_H_
 #define HANGMAN_H_
 
-#include <QtCore>
-#include <QtGui>
-#include <QGraphicsScene>
-#include <QGraphicsLineItem>
-#include <QGraphicsEllipseItem>
 #include <QMainWindow>
-#include <QToolButton>
+#include <QTranslator>
 
-#include "./game.h"
+class QGraphicsEllipseItem;
+class QGraphicsLineItem;
+class QGraphicsScene;
+class QToolButton;
+
+class Game;
 
 namespace Ui {
 class Hangman;
