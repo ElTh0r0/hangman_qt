@@ -49,7 +49,7 @@ class Hangman : public QMainWindow {
     void checkLetter(const QByteArray &baLetter);
 
  protected:
-    void changeEvent(QEvent *pEvent);
+    void changeEvent(QEvent *pEvent) override;
 
  private slots:
     void clickLetter();
