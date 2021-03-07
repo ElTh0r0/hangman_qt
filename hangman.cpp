@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth
+ * Copyright (C) 2008-2021 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -38,7 +38,6 @@ Hangman::Hangman(QWidget *pParent)
   : QMainWindow(pParent),
     m_pUi(new Ui::Hangman) {
   m_pUi->setupUi(this);
-  this->setWindowTitle(qApp->applicationName());
   this->loadLanguage(Hangman::getSystemLanguage());
   m_pGame = new Game(QStringLiteral(":/data.dat"));
   this->setupActions();
@@ -168,7 +167,7 @@ void Hangman::updateWord(const QByteArray &baWord,
                          const quint16 nSumCorrect,
                          const quint16 nPlayedWords,
                          const quint16 nQuantity) {
-  m_pUi->lbl_Word->setText(QString(baWord));
+  m_pUi->lbl_Word->setText(QString::fromLatin1(baWord));
 
   switch (nWrong) {
     case 1: m_pRope->setVisible(true);
@@ -259,7 +258,7 @@ void Hangman::playedAll(const quint16 nCorrectInRow,
 // ---------------------------------------------------------------------------
 
 void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
-  QString sMeaning = QString("");
+  QString sMeaning = QLatin1String("");
   if (!sAnswer.isEmpty()) {
     sMeaning = "\n" + QString(tr("It means: %1").arg(sAnswer));
   }
@@ -281,7 +280,7 @@ auto Hangman::getSystemLanguage() -> QString {
 #ifdef Q_OS_UNIX
     QByteArray lang = qgetenv("LANG");
     if (!lang.isEmpty()) {
-      return QLocale(lang).name();
+      return QLocale(QString::fromLatin1(lang)).name();
     }
 #endif
     return QLocale::system().name();
@@ -322,14 +321,14 @@ void Hangman::changeEvent(QEvent *pEvent) {
 void Hangman::showInfoBox() {
   QMessageBox::about(
         this, QStringLiteral("Info"),
-        QString("<center>"
-                "<big><b>%1 %2</b></big><br />"
-                "%3<br />"
-                "<small>%4</small><br /><br />"
-                "%5<br />"
-                "%6<br />"
-                "</center>"
-                "%7")
+        QString::fromLatin1("<center>"
+                            "<big><b>%1 %2</b></big><br />"
+                            "%3<br />"
+                            "<small>%4</small><br /><br />"
+                            "%5<br />"
+                            "%6<br />"
+                            "</center>"
+                            "%7")
         .arg(qApp->applicationName(),
              qApp->applicationVersion(),
              QStringLiteral(APP_DESC),

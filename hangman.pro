@@ -1,5 +1,5 @@
 #  This file is part of Hangman.
-#  Copyright (C) 2008-2020 Thorsten Roth
+#  Copyright (C) 2008-2021 Thorsten Roth
 #
 #  Hangman is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -14,10 +14,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Hangman.  If not, see <https://www.gnu.org/licenses/>.
 
-lessThan(QT_MAJOR_VERSION, 5) {
-  error("Hangman requires Qt 5.0 or greater")
-}
-
 TEMPLATE      = app
 
 unix: !macx {
@@ -26,10 +22,12 @@ unix: !macx {
        TARGET = Hangman
 }
 
-VERSION       = 4.0.6
+win32:VERSION = 4.0.7.0
+else:VERSION  = 4.0.7
+
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5."
-QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2020 Thorsten Roth"
+QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2021 Thorsten Roth"
 
 DEFINES      += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\" \
                 APP_VERSION=\"\\\"$$VERSION\\\"\" \
@@ -47,7 +45,7 @@ CONFIG       += c++11
 CONFIG(debug, debug|release) {
   CONFIG     += warn_on
   DEFINES    += QT_DEPRECATED_WARNINGS
-  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x051500
+  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 }
 
 SOURCES      += main.cpp\
@@ -59,36 +57,41 @@ HEADERS      += hangman.h \
 
 FORMS        += hangman.ui
 
-RESOURCES     = res/hangman_resources.qrc
-win32:RC_FILE = res/hangman_win.rc
+RESOURCES     = data/hangman_resources.qrc
 
 TRANSLATIONS += lang/hangman_de.ts \
                 lang/hangman_it.ts \
                 lang/hangman_nl.ts
 
+win32:RC_ICONS = data/win/icon.ico
+
 macx {
-  ICON               = res/icon.icns
-  QMAKE_INFO_PLIST   = res/Info.plist
+  ICON               = data/mac/icon.icns
+  QMAKE_INFO_PLIST   = data/mac/Info.plist
 }
 
 unix: !macx {
-    isEmpty(PREFIX) {
-        PREFIX = /usr/local
-    }
-    isEmpty(BINDIR) {
-        BINDIR = bin
-    }
+  isEmpty(PREFIX) {
+    PREFIX = /usr/local
+  }
+  isEmpty(BINDIR) {
+    BINDIR = bin
+  }
 
-    target.path    = $$PREFIX/$$BINDIR/
+  target.path    = $$PREFIX/$$BINDIR/
 
-    desktop.path   = $$PREFIX/share/applications
-    desktop.files += data/hangman.desktop
+  desktop.path   = $$PREFIX/share/applications
+  desktop.files += data/unix/com.github.elth0r0.hangman.desktop
 
-    pixmap.path    = $$PREFIX/share/pixmaps
-    pixmap.files  += res/images/hangman.png \
-                     res/images/hangman.xpm
+  pixmap.path    = $$PREFIX/share/pixmaps
+  pixmap.files  += data/hangman.png \
+                   data/unix/hangman.xpm
 
-    INSTALLS      += target \
-                     desktop \
-                     pixmap
+  meta.path      = $$PREFIX/share/metainfo
+  meta.files    += data/unix/com.github.elth0r0.hangman.metainfo.xml
+
+  INSTALLS      += target \
+                   desktop \
+                   pixmap \
+                   meta
 }

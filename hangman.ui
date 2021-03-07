@@ -26,7 +26,7 @@
    <string notr="true">Hangman</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res/hangman_resources.qrc">
+   <iconset resource="data/hangman_resources.qrc">
     <normaloff>:/hangman.png</normaloff>:/hangman.png</iconset>
   </property>
   <property name="locale">
@@ -231,7 +231,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="res/hangman_resources.qrc"/>
+  <include location="data/hangman_resources.qrc"/>
  </resources>
  <connections/>
 </ui>

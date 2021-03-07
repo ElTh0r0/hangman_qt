@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth
+ * Copyright (C) 2008-2021 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -107,7 +107,7 @@ void Game::nextWord() {
     m_baShownWord.clear();
     sWord = QString('-').repeated(sWord.length());
     m_baShownWord = sWord.toLatin1();
-    m_sAnswer = QString("");
+    m_sAnswer = QLatin1String("");
   }
   if (2 == sListTmp.size()) {
     m_sAnswer = sListTmp[1].trimmed();
@@ -149,7 +149,7 @@ void Game::checkLetter(const QByteArray &baLetter) {
                     m_nSumCorrect, m_nPlayedWords, m_nQuantity);
     if (Game::MAXTRIES == m_nCntFalse) {
       m_nCorrectInRow = 0;
-      emit showAnswer(m_sAnswer, QString(m_baWord));
+      emit showAnswer(m_sAnswer, QString::fromLatin1(m_baWord));
       this->nextWord();
     }
   }

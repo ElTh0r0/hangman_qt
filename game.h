@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth
+ * Copyright (C) 2008-2021 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -45,7 +45,7 @@ class Game : public QObject {
                     const quint16 nCorrectInRow, const quint16 nSumCorrect,
                     const quint16 nPlayedWords, const quint16 nQuantity);
     void showAnswer(const QString &sAnswer,
-                    const QString &sWord = QString(""));
+                    const QString &sWord = QLatin1String(""));
 
  private slots:
     void nextWord();

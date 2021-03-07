@@ -11,7 +11,7 @@
 	<key>CFBundleIconFile</key>
 	<string>@ICON@</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.elthoro.hangman</string>
+	<string>com.github.elth0r0.hangman</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -19,10 +19,10 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>4.0.6</string>
+	<string>4.0.7</string>
 	<key>CFBundleVersion</key>
-	<string>4.0.6</string>
+	<string>4.0.7</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>(c) 2008-2020, Thorsten Roth</string>
+	<string>(c) 2008-2021, Thorsten Roth</string>
 </dict>
 </plist>

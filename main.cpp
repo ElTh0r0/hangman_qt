@@ -3,7 +3,7 @@
  *
  * \section LICENSE
  *
- * Copyright (C) 2008-2020 Thorsten Roth
+ * Copyright (C) 2008-2021 Thorsten Roth
  *
  * This file is part of Hangman.
  *
@@ -51,9 +51,17 @@ auto main(int argc, char *argv[]) -> int {
   QApplication app(argc, argv);
   app.setApplicationName(QStringLiteral(APP_NAME));
   app.setApplicationVersion(QStringLiteral(APP_VERSION));
+  app.setApplicationDisplayName(QStringLiteral(APP_NAME));
+#if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)
+  app.setWindowIcon(QIcon::fromTheme(QStringLiteral("hangman"),
+                                     QIcon(QStringLiteral(":/hangman.png"))));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+  app.setDesktopFileName(QStringLiteral("com.github.elth0r0.hangman"));
+#endif
+#endif
 
   QCommandLineParser cmdparser;
-  cmdparser.setApplicationDescription(APP_DESC);
+  cmdparser.setApplicationDescription(QStringLiteral(APP_DESC));
   cmdparser.addHelpOption();
   cmdparser.addVersionOption();
   cmdparser.process(app);
@@ -118,9 +126,9 @@ void LoggingHandler(QtMsgType type,
                     const QMessageLogContext &context,
                     const QString &sMsg) {
   QString sContext = sMsg + " (" +
-                     QString(context.file) + ":" +
+                     QString::fromLatin1(context.file) + ":" +
                      QString::number(context.line) + ", " +
-                     QString(context.function) + ")";
+                     QString::fromLatin1(context.function) + ")";
   QString sTime(QTime::currentTime().toString());
 
   switch (type) {
