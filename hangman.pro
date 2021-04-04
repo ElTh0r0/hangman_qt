@@ -22,11 +22,11 @@ unix: !macx {
        TARGET = Hangman
 }
 
-win32:VERSION = 4.0.7.0
-else:VERSION  = 4.0.7
+win32:VERSION = 4.0.8.0
+else:VERSION  = 4.0.8
 
 QMAKE_TARGET_PRODUCT     = "Hangman"
-QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5."
+QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5/6."
 QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2021 Thorsten Roth"
 
 DEFINES      += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\" \

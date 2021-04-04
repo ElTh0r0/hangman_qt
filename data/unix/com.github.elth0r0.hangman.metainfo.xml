@@ -26,6 +26,11 @@
   <content_rating type="oars-1.0" />
   
   <releases>
+    <release version="4.0.8" date="2021-04-04">
+      <description>
+        <p>Add support for Qt 6.</p>
+      </description>
+    </release>
     <release version="4.0.7" date="2021-03-07">
       <description>
         <p>Packaging changes and minor adjustments.</p>

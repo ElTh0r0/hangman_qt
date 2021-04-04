@@ -57,7 +57,10 @@ void Game::loadWordlist(const QString &sRessource) {
   }
 
   QTextStream textStream(&dataFile);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+  // Since Qt 6 UTF-8 is used by default
   textStream.setCodec("UTF-8");
+#endif
   while (true) {
     QString sLine = textStream.readLine();
     if (sLine.isNull()) {
