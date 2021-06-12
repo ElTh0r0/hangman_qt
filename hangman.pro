@@ -22,8 +22,8 @@ unix: !macx {
        TARGET = Hangman
 }
 
-win32:VERSION = 4.0.8.0
-else:VERSION  = 4.0.8
+win32:VERSION = 4.0.9.0
+else:VERSION  = 4.0.9
 
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5/6."
@@ -60,6 +60,7 @@ FORMS        += hangman.ui
 RESOURCES     = data/hangman_resources.qrc
 
 TRANSLATIONS += lang/hangman_de.ts \
+                lang/hangman_en.ts \
                 lang/hangman_it.ts \
                 lang/hangman_nl.ts
 

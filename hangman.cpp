@@ -295,11 +295,8 @@ void Hangman::loadLanguage(const QString &sLang) {
                         "_" + sLang + ".qm")) {
     qApp->installTranslator(&m_translator);
   } else {
-    if (!sLang.startsWith(QStringLiteral("en"))) {
-      // EN is build in translation -> no file
-      qWarning() << "Could not load translation :/" +
-                    qApp->applicationName().toLower() + "_" + sLang + ".qm";
-    }
+    qWarning() << "Could not load translation :/" +
+                  qApp->applicationName().toLower() + "_" + sLang + ".qm";
   }
 }
 
