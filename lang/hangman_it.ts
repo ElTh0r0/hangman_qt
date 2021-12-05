@@ -91,7 +91,7 @@ Ciò corrisponde a una quota del %3 %</translation>
     <message>
         <location filename="../hangman.cpp" line="270"/>
         <source>Lost</source>
-        <translation>Perso</translation>
+        <translation>Hai perso</translation>
     </message>
     <message>
         <location filename="../hangman.cpp" line="271"/>
