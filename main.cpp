@@ -39,12 +39,10 @@
 static QFile logfile;
 static QTextStream out(&logfile);
 
-void setupLogger(const QString &sDebugFilePath,
-                 const QString &sAppName,
+void setupLogger(const QString &sDebugFilePath, const QString &sAppName,
                  const QString &sVersion);
 
-void LoggingHandler(QtMsgType type,
-                    const QMessageLogContext &context,
+void LoggingHandler(QtMsgType type, const QMessageLogContext &context,
                     const QString &sMsg);
 
 auto main(int argc, char *argv[]) -> int {
@@ -98,8 +96,7 @@ auto main(int argc, char *argv[]) -> int {
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-void setupLogger(const QString &sDebugFilePath,
-                 const QString &sAppName,
+void setupLogger(const QString &sDebugFilePath, const QString &sAppName,
                  const QString &sVersion) {
   // Remove old debug file
   if (QFile(sDebugFilePath).exists()) {
@@ -116,17 +113,15 @@ void setupLogger(const QString &sDebugFilePath,
 
   qDebug() << sAppName << sVersion;
   qDebug() << "Compiled with Qt" << QT_VERSION_STR;
-  qDebug() << "Qt runtime" <<  qVersion();
+  qDebug() << "Qt runtime" << qVersion();
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 
-void LoggingHandler(QtMsgType type,
-                    const QMessageLogContext &context,
+void LoggingHandler(QtMsgType type, const QMessageLogContext &context,
                     const QString &sMsg) {
-  QString sContext = sMsg + " (" +
-                     QString::fromLatin1(context.file) + ":" +
+  QString sContext = sMsg + " (" + QString::fromLatin1(context.file) + ":" +
                      QString::number(context.line) + ", " +
                      QString::fromLatin1(context.function) + ")";
   QString sTime(QTime::currentTime().toString());

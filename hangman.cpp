@@ -35,8 +35,7 @@
 #include "ui_hangman.h"
 
 Hangman::Hangman(QWidget *pParent)
-  : QMainWindow(pParent),
-    m_pUi(new Ui::Hangman) {
+    : QMainWindow(pParent), m_pUi(new Ui::Hangman) {
   m_pUi->setupUi(this);
   this->loadLanguage(Hangman::getSystemLanguage());
   m_pGame = new Game(QStringLiteral(":/data.dat"));
@@ -89,8 +88,8 @@ void Hangman::setupActions() {
 
   for (int i = 0; i < 26; ++i) {  // Loop through ASCII A-Z (65 - 90)
     m_pButtons.append(new QToolButton(this));
-    connect(m_pButtons.last(), &QToolButton::clicked,
-            this, &Hangman::clickLetter);
+    connect(m_pButtons.last(), &QToolButton::clicked, this,
+            &Hangman::clickLetter);
 
     m_pButtons.last()->setText(QString(static_cast<char>(i + 65)));
     m_pButtons.last()->setFocusPolicy(Qt::NoFocus);
@@ -116,8 +115,8 @@ void Hangman::setupActions() {
 void Hangman::createGallows() {
   m_pScene = new QGraphicsScene(this);
   m_pUi->graphicsView->setScene(m_pScene);
-  m_pUi->graphicsView->setRenderHints(
-        QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+  m_pUi->graphicsView->setRenderHints(QPainter::Antialiasing |
+                                      QPainter::SmoothPixmapTransform);
 
   QPen penGallows(QColor(46, 52, 54));
   penGallows.setWidth(10);
@@ -161,50 +160,55 @@ void Hangman::clickLetter() {
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Hangman::updateWord(const QByteArray &baWord,
-                         const quint8 nWrong,
-                         const quint16 nCorrectInRow,
-                         const quint16 nSumCorrect,
-                         const quint16 nPlayedWords,
-                         const quint16 nQuantity) {
+void Hangman::updateWord(const QByteArray &baWord, const quint8 nWrong,
+                         const quint16 nCorrectInRow, const quint16 nSumCorrect,
+                         const quint16 nPlayedWords, const quint16 nQuantity) {
   m_pUi->lbl_Word->setText(QString::fromLatin1(baWord));
 
   switch (nWrong) {
-    case 1: m_pRope->setVisible(true);
+    case 1:
+      m_pRope->setVisible(true);
       break;
-    case 2: m_pHead->setVisible(true);
+    case 2:
+      m_pHead->setVisible(true);
       break;
-    case 3: m_pBody->setVisible(true);
+    case 3:
+      m_pBody->setVisible(true);
       break;
-    case 4: m_pArmLeft->setVisible(true);
+    case 4:
+      m_pArmLeft->setVisible(true);
       break;
-    case 5: m_pArmRight->setVisible(true);
+    case 5:
+      m_pArmRight->setVisible(true);
       break;
-    case 6: m_pLegLeft->setVisible(true);
+    case 6:
+      m_pLegLeft->setVisible(true);
       break;
-    case 7: m_pLegRight->setVisible(true);
+    case 7:
+      m_pLegRight->setVisible(true);
       break;
-    case Game::NEWRORD: this->newWord(nCorrectInRow, nSumCorrect, nPlayedWords);
+    case Game::NEWRORD:
+      this->newWord(nCorrectInRow, nSumCorrect, nPlayedWords);
       break;
-    case Game::PLAYEDALL: this->playedAll(nCorrectInRow, nSumCorrect,
-                                          nPlayedWords, nQuantity);
+    case Game::PLAYEDALL:
+      this->playedAll(nCorrectInRow, nSumCorrect, nPlayedWords, nQuantity);
       break;
-    default: break;
+    default:
+      break;
   }
 }
 
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Hangman::newWord(const quint16 nCorrectInRow,
-                      const quint16 nSumCorrect,
+void Hangman::newWord(const quint16 nCorrectInRow, const quint16 nSumCorrect,
                       const quint16 nPlayedWords) const {
   for (auto &button : m_pButtons) {
     button->setEnabled(true);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
-  m_pUi->lbl_CorrectPercent->setText(
-        QString::number(nSumCorrect) + " / " + QString::number(nPlayedWords));
+  m_pUi->lbl_CorrectPercent->setText(QString::number(nSumCorrect) + " / " +
+                                     QString::number(nPlayedWords));
 
   quint8 nPercent = 0;
   if (nPlayedWords > 0) {
@@ -225,25 +229,23 @@ void Hangman::newWord(const quint16 nCorrectInRow,
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-void Hangman::playedAll(const quint16 nCorrectInRow,
-                        const quint16 nSumCorrect,
-                        const quint16 nPlayedWords,
-                        const quint16 nQuantity) {
+void Hangman::playedAll(const quint16 nCorrectInRow, const quint16 nSumCorrect,
+                        const quint16 nPlayedWords, const quint16 nQuantity) {
   for (auto &button : m_pButtons) {
     button->setEnabled(false);
   }
   m_pUi->lbl_CorrectInRow->setText(QString::number(nCorrectInRow));
-  m_pUi->lbl_CorrectPercent->setText(
-        QString::number(nSumCorrect) + " / " + QString::number(nPlayedWords));
+  m_pUi->lbl_CorrectPercent->setText(QString::number(nSumCorrect) + " / " +
+                                     QString::number(nPlayedWords));
 
   auto nPercentCorrect = static_cast<quint8>(nSumCorrect * 100 / nPlayedWords);
-  QMessageBox::information(this, tr("All words used!"),
-                           tr("You played all words!\n\n"
-                              "You guessed %1 of %2 words.\n"
-                              "This corresponds to a quote of %3 %")
-                           .arg(QString::number(nSumCorrect),
-                                QString::number(nQuantity),
-                                QString::number(nPercentCorrect)));
+  QMessageBox::information(
+      this, tr("All words used!"),
+      tr("You played all words!\n\n"
+         "You guessed %1 of %2 words.\n"
+         "This corresponds to a quote of %3 %")
+          .arg(QString::number(nSumCorrect), QString::number(nQuantity),
+               QString::number(nPercentCorrect)));
 
   m_pRope->setVisible(false);
   m_pHead->setVisible(false);
@@ -269,7 +271,7 @@ void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
   } else {
     QMessageBox::information(this, tr("Lost"),
                              tr("Unfortunately you have lost!") + "\n\n" +
-                             tr("The word was: %1").arg(sWord) + sMeaning);
+                                 tr("The word was: %1").arg(sWord) + sMeaning);
   }
 }
 
@@ -278,12 +280,12 @@ void Hangman::showAnswer(const QString &sAnswer, const QString &sWord) {
 
 auto Hangman::getSystemLanguage() -> QString {
 #ifdef Q_OS_UNIX
-    QByteArray lang = qgetenv("LANG");
-    if (!lang.isEmpty()) {
-      return QLocale(QString::fromLatin1(lang)).name();
-    }
+  QByteArray lang = qgetenv("LANG");
+  if (!lang.isEmpty()) {
+    return QLocale(QString::fromLatin1(lang)).name();
+  }
 #endif
-    return QLocale::system().name();
+  return QLocale::system().name();
 }
 
 // ----------------------------------------------------------------------------
@@ -291,12 +293,12 @@ auto Hangman::getSystemLanguage() -> QString {
 
 void Hangman::loadLanguage(const QString &sLang) {
   qApp->removeTranslator(&m_translator);
-  if (m_translator.load(":/" + qApp->applicationName().toLower() +
-                        "_" + sLang + ".qm")) {
+  if (m_translator.load(":/" + qApp->applicationName().toLower() + "_" + sLang +
+                        ".qm")) {
     qApp->installTranslator(&m_translator);
   } else {
     qWarning() << "Could not load translation :/" +
-                  qApp->applicationName().toLower() + "_" + sLang + ".qm";
+                      qApp->applicationName().toLower() + "_" + sLang + ".qm";
   }
 }
 
@@ -317,28 +319,26 @@ void Hangman::changeEvent(QEvent *pEvent) {
 
 void Hangman::showInfoBox() {
   QMessageBox::about(
-        this, QStringLiteral("Info"),
-        QString::fromLatin1("<center>"
-                            "<big><b>%1 %2</b></big><br />"
-                            "%3<br />"
-                            "<small>%4</small><br /><br />"
-                            "%5<br />"
-                            "%6<br />"
-                            "</center>"
-                            "%7")
-        .arg(qApp->applicationName(),
-             qApp->applicationVersion(),
-             QStringLiteral(APP_DESC),
-             QStringLiteral(APP_COPY),
-             tr("URL") +
-             ": <a href=\"https://github.com/ElTh0r0/hangman_qt\">"
-             "https://github.com/ElTh0r0/hangman_qt</a>",
-             tr("License") +
-             ": <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">"
-             "GNU General Public License Version 3</a>",
-             "<i>" + tr("Translations") +
-             "</i><br />"
-             "&nbsp;&nbsp;- Dutch: Vistaus<br />"
-             "&nbsp;&nbsp;- German: ElThoro<br />"
-             "&nbsp;&nbsp;- Italian: davi92"));
+      this, QStringLiteral("Info"),
+      QString::fromLatin1("<center>"
+                          "<big><b>%1 %2</b></big><br />"
+                          "%3<br />"
+                          "<small>%4</small><br /><br />"
+                          "%5<br />"
+                          "%6<br />"
+                          "</center>"
+                          "%7")
+          .arg(qApp->applicationName(), qApp->applicationVersion(),
+               QStringLiteral(APP_DESC), QStringLiteral(APP_COPY),
+               tr("URL") +
+                   ": <a href=\"https://github.com/ElTh0r0/hangman_qt\">"
+                   "https://github.com/ElTh0r0/hangman_qt</a>",
+               tr("License") +
+                   ": <a href=\"https://www.gnu.org/licenses/gpl-3.0.html\">"
+                   "GNU General Public License Version 3</a>",
+               "<i>" + tr("Translations") +
+                   "</i><br />"
+                   "&nbsp;&nbsp;- Dutch: Vistaus<br />"
+                   "&nbsp;&nbsp;- German: ElThoro<br />"
+                   "&nbsp;&nbsp;- Italian: davi92"));
 }

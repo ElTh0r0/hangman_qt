@@ -26,7 +26,6 @@
 #include <QDebug>
 #include <QFile>
 #include <QMessageBox>
-
 #include <ctime>
 #include <random>  // std::shuffle
 
@@ -78,7 +77,7 @@ void Game::newGame() {
   m_nSumCorrect = 0;
   m_nCorrectInRow = 0;
 
-  // Shuffel questions
+  // Shuffle questions
   std::shuffle(m_sListWords.begin(), m_sListWords.end(),
                std::mt19937(std::random_device()()));
   this->nextWord();
@@ -116,8 +115,8 @@ void Game::nextWord() {
     m_sAnswer = sListTmp[1].trimmed();
   }
 
-  emit updateWord(m_baShownWord, Game::NEWRORD, m_nCorrectInRow,
-                  m_nSumCorrect, m_nPlayedWords, m_nQuantity);
+  emit updateWord(m_baShownWord, Game::NEWRORD, m_nCorrectInRow, m_nSumCorrect,
+                  m_nPlayedWords, m_nQuantity);
   m_nCntFalse = 0;
   m_nPlayedWords++;
 
@@ -137,8 +136,8 @@ void Game::checkLetter(const QByteArray &baLetter) {
         m_baShownWord[i] = m_baWord.at(i);
       }
     }
-    emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow,
-                    m_nSumCorrect, m_nPlayedWords, m_nQuantity);
+    emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow, m_nSumCorrect,
+                    m_nPlayedWords, m_nQuantity);
 
     if (m_baShownWord == m_baWord) {
       m_nSumCorrect++;
@@ -148,8 +147,8 @@ void Game::checkLetter(const QByteArray &baLetter) {
     }
   } else {
     m_nCntFalse++;
-    emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow,
-                    m_nSumCorrect, m_nPlayedWords, m_nQuantity);
+    emit updateWord(m_baShownWord, m_nCntFalse, m_nCorrectInRow, m_nSumCorrect,
+                    m_nPlayedWords, m_nQuantity);
     if (Game::MAXTRIES == m_nCntFalse) {
       m_nCorrectInRow = 0;
       emit showAnswer(m_sAnswer, QString::fromLatin1(m_baWord));
