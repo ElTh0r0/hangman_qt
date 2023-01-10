@@ -44,7 +44,7 @@ PROJECT_NUMBER         = 4.0.9
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Simple hangman game framework written in C++ and Qt 5."
+PROJECT_BRIEF          = "Simple hangman game framework written in C++ and Qt 5/6"
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is included in
 # the documentation. The maximum height of the logo should not exceed 55 pixels

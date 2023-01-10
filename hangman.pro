@@ -27,7 +27,7 @@ else:VERSION  = 4.0.9
 
 QMAKE_TARGET_PRODUCT     = "Hangman"
 QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5/6."
-QMAKE_TARGET_COPYRIGHT   = "(C) 2008-2021 Thorsten Roth"
+QMAKE_TARGET_COPYRIGHT   = "(C) 2008-present Thorsten Roth"
 
 DEFINES      += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\" \
                 APP_VERSION=\"\\\"$$VERSION\\\"\" \
@@ -40,12 +40,12 @@ UI_DIR        = ./.ui
 RCC_DIR       = ./.rcc
 
 QT           += core gui widgets
-CONFIG       += c++11
+CONFIG       += c++17
+DEFINES      += QT_NO_FOREACH
 
 CONFIG(debug, debug|release) {
   CONFIG     += warn_on
-  DEFINES    += QT_DEPRECATED_WARNINGS
-  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x060000
+  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x060400
 }
 
 SOURCES      += main.cpp\
