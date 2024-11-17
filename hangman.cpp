@@ -87,15 +87,18 @@ void Hangman::setupActions() {
   connect(m_pUi->action_Quit, &QAction::triggered, this, &Hangman::close);
 
   for (int i = 0; i < 26; ++i) {  // Loop through ASCII A-Z (65 - 90)
+    QString sChar = QString(static_cast<char>(i + 65));
     m_pButtons.append(new QToolButton(this));
-    connect(m_pButtons.last(), &QToolButton::clicked, this,
-            &Hangman::clickLetter);
-
-    m_pButtons.last()->setText(QString(static_cast<char>(i + 65)));
+    m_pButtons.last()->setText(sChar);
     m_pButtons.last()->setFocusPolicy(Qt::NoFocus);
     m_pButtons.last()->setMinimumHeight(33);
     m_pButtons.last()->setSizePolicy(QSizePolicy::Expanding,
                                      QSizePolicy::Fixed);
+
+    connect(m_pButtons.last(), &QToolButton::clicked, this, [=]() {
+      m_pButtons.at(i)->setEnabled(false);
+      emit checkLetter(sChar.toLatin1());
+    });
 
     if (i < 24) {
       m_pUi->grid_Buttons->addWidget(m_pButtons.last(), i / 6, i % 6);
@@ -144,17 +147,6 @@ void Hangman::createGallows() {
   m_pLegLeft->setVisible(false);
   m_pLegRight = m_pScene->addLine(57, 169, 76, 209, penBody);
   m_pLegRight->setVisible(false);
-}
-
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-
-void Hangman::clickLetter() {
-  auto *tmpBtn = qobject_cast<QToolButton *>(sender());
-  if (tmpBtn != nullptr) {
-    tmpBtn->setEnabled(false);
-    emit checkLetter(tmpBtn->text().toLatin1());
-  }
 }
 
 // ---------------------------------------------------------------------------

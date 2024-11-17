@@ -52,7 +52,6 @@ class Hangman : public QMainWindow {
   void changeEvent(QEvent *pEvent) override;
 
  private slots:
-  void clickLetter();
   void updateWord(const QByteArray &baWord, const quint8 nWrong,
                   const quint16 nCorrectInRow, const quint16 nSumCorrect,
                   const quint16 nPlayedWords, const quint16 nQuantity);
