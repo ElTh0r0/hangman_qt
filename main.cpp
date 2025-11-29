@@ -1,30 +1,5 @@
-/**
- * \file main.cpp
- *
- * \section LICENSE
- *
- * Copyright (C) 2008-present Thorsten Roth
- *
- * This file is part of Hangman.
- *
- * Hangman is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Hangman is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Hangman.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-/** \mainpage
- * \section Introduction
- * Simple hangman game framework written in C++ and Qt.
- */
+// SPDX-FileCopyrightText: 2008-2025 Thorsten Roth
+// SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <QApplication>
 #include <QCommandLineParser>
@@ -79,7 +54,7 @@ auto main(int argc, char *argv[]) -> int {
     userDataDir.mkpath(userDataDir.absolutePath());
   }
 
-  const QString sDebugFile("debug.log");
+  const QString sDebugFile(QStringLiteral("debug.log"));
   setupLogger(userDataDir.absolutePath() + "/" + sDebugFile,
               app.applicationName(), app.applicationVersion());
   */

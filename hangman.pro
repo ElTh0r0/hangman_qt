@@ -1,18 +1,5 @@
-#  This file is part of Hangman.
-#  Copyright (C) 2008-2021 Thorsten Roth
-#
-#  Hangman is free software: you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
-#
-#  Hangman is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with Hangman.  If not, see <https://www.gnu.org/licenses/>.
+# SPDX-FileCopyrightText: 2008-2025 Thorsten Roth
+# SPDX-License-Identifier: GPL-3.0-or-later
 
 TEMPLATE      = app
 
@@ -45,7 +32,7 @@ DEFINES      += QT_NO_FOREACH
 
 CONFIG(debug, debug|release) {
   CONFIG     += warn_on
-  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x060900
+  DEFINES    += QT_DISABLE_DEPRECATED_BEFORE=0x061000
 }
 
 SOURCES      += main.cpp\
