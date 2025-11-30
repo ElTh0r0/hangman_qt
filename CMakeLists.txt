@@ -46,7 +46,7 @@ elseif(MACOS)
         MACOSX_BUNDLE_ICON_FILE "icon.icns"
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/data/mac/Info.plist"
     )
-    qt_add_executable(iqpuzzle MACOSX_BUNDLE ${app_icon_macos})
+    qt_add_executable(hangman MACOSX_BUNDLE ${app_icon_macos})
 else()
     qt_add_executable(hangman)
 endif()
