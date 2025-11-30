@@ -9,11 +9,10 @@ unix: !macx {
        TARGET = Hangman
 }
 
-win32:VERSION = 4.0.9.0
-else:VERSION  = 4.0.9
+VERSION  = 4.2.0
 
 QMAKE_TARGET_PRODUCT     = "Hangman"
-QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 5/6."
+QMAKE_TARGET_DESCRIPTION = "Hangman game framework written in C++ and Qt 6."
 QMAKE_TARGET_COPYRIGHT   = "(C) 2008-present Thorsten Roth"
 
 DEFINES      += APP_NAME=\"\\\"$$QMAKE_TARGET_PRODUCT\\\"\" \
@@ -51,7 +50,7 @@ TRANSLATIONS += lang/hangman_de.ts \
                 lang/hangman_it.ts \
                 lang/hangman_nl.ts
 
-win32:RC_ICONS = data/win/icon.ico
+win32:RC_FILE = data/win/hangman_win.rc
 
 macx {
   ICON               = data/mac/icon.icns
@@ -72,7 +71,7 @@ unix: !macx {
   desktop.files += data/unix/com.github.elth0r0.hangman.desktop
 
   pixmap.path    = $$PREFIX/share/pixmaps
-  pixmap.files  += data/hangman.png \
+  pixmap.files  += data/icon.png \
                    data/unix/hangman.xpm
 
   meta.path      = $$PREFIX/share/metainfo

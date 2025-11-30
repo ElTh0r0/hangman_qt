@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>hangman.png</file>
+        <file>icon.png</file>
         <file>data.dat</file>
         <file>hangman.qss</file>
         <file alias="hangman_de.qm">../lang/hangman_de.qm</file>

@@ -4,7 +4,9 @@
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QDebug>
+#include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 #include <QStyleFactory>
 #include <QTextStream>
 #include <QTime>
@@ -27,10 +29,8 @@ auto main(int argc, char *argv[]) -> int {
   app.setApplicationDisplayName(QStringLiteral(APP_NAME));
 #if !defined(Q_OS_WIN) && !defined(Q_OS_MACOS)
   app.setWindowIcon(QIcon::fromTheme(QStringLiteral("hangman"),
-                                     QIcon(QStringLiteral(":/hangman.png"))));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+                                     QIcon(QStringLiteral(":/icon.png"))));
   app.setDesktopFileName(QStringLiteral("com.github.elth0r0.hangman"));
-#endif
 #endif
 
   QCommandLineParser cmdparser;
@@ -40,9 +40,8 @@ auto main(int argc, char *argv[]) -> int {
   cmdparser.process(app);
 
   // Create log file
-  /*
-  QStringList sListPaths = QStandardPaths::standardLocations(
-                             QStandardPaths::DataLocation);
+  QStringList sListPaths =
+      QStandardPaths::standardLocations(QStandardPaths::AppLocalDataLocation);
   if (sListPaths.isEmpty()) {
     qCritical() << "Error while getting data standard path.";
     sListPaths << app.applicationDirPath();
@@ -57,7 +56,6 @@ auto main(int argc, char *argv[]) -> int {
   const QString sDebugFile(QStringLiteral("debug.log"));
   setupLogger(userDataDir.absolutePath() + "/" + sDebugFile,
               app.applicationName(), app.applicationVersion());
-  */
 
   app.setStyle(QStyleFactory::create(QStringLiteral("Fusion")));
   Hangman myApp;

@@ -4,18 +4,18 @@
 <context>
     <name>Game</name>
     <message>
-        <location filename="../game.cpp" line="41"/>
-        <location filename="../game.cpp" line="54"/>
+        <location filename="../game.cpp" line="20"/>
+        <location filename="../game.cpp" line="33"/>
         <source>Error</source>
         <translation>Fout</translation>
     </message>
     <message>
-        <location filename="../game.cpp" line="41"/>
+        <location filename="../game.cpp" line="20"/>
         <source>Word list is empty!</source>
         <translation>De woordenlijst is leeg!</translation>
     </message>
     <message>
-        <location filename="../game.cpp" line="55"/>
+        <location filename="../game.cpp" line="34"/>
         <source>Word list could not be opened!</source>
         <translation>De woordenlijst kan niet worden geopend!</translation>
     </message>
@@ -23,47 +23,47 @@
 <context>
     <name>Hangman</name>
     <message>
-        <location filename="../hangman.ui" line="52"/>
+        <location filename="../hangman.ui" line="51"/>
         <source>Guess the following word:</source>
         <translation>Raad het volgende woord:</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="147"/>
+        <location filename="../hangman.ui" line="152"/>
         <source>Guessed words in a row:</source>
         <translation>Aantal achter elkaar geraden woorden:</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="161"/>
+        <location filename="../hangman.ui" line="172"/>
         <source>Guessed words in total:</source>
         <translation>Totaal aantal geraden woorden:</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="207"/>
+        <location filename="../hangman.ui" line="224"/>
         <source>&amp;Menu</source>
         <translation>&amp;Menu</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="218"/>
+        <location filename="../hangman.ui" line="235"/>
         <source>&amp;New game</source>
         <translation>&amp;Nieuw spel</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="223"/>
+        <location filename="../hangman.ui" line="240"/>
         <source>&amp;Quit</source>
         <translation>Af&amp;sluiten</translation>
     </message>
     <message>
-        <location filename="../hangman.ui" line="228"/>
+        <location filename="../hangman.ui" line="245"/>
         <source>&amp;Info</source>
         <translation>&amp;Informatie</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="240"/>
+        <location filename="../hangman.cpp" line="216"/>
         <source>All words used!</source>
         <translation>Alle woorden zijn gebruikt!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="241"/>
+        <location filename="../hangman.cpp" line="217"/>
         <source>You played all words!
 
 You guessed %1 of %2 words.
@@ -78,47 +78,47 @@ Sie haben %1 von %2 Wörtern erraten.
 Das entspricht einer Quote von %3 %</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="263"/>
+        <location filename="../hangman.cpp" line="238"/>
         <source>It means: %1</source>
         <translation>Het betekent: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="267"/>
+        <location filename="../hangman.cpp" line="242"/>
         <source>Won</source>
         <translation>Gewonnen</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="268"/>
+        <location filename="../hangman.cpp" line="243"/>
         <source>You guessed the word!</source>
         <translation>Je hebt het woord geraden!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="270"/>
+        <location filename="../hangman.cpp" line="245"/>
         <source>Lost</source>
         <translation>Verloren</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="271"/>
+        <location filename="../hangman.cpp" line="246"/>
         <source>Unfortunately you have lost!</source>
         <translation>Helaas, je hebt verloren!</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="272"/>
+        <location filename="../hangman.cpp" line="247"/>
         <source>The word was: %1</source>
         <translation>Het gezochte woord was: %1</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="336"/>
+        <location filename="../hangman.cpp" line="305"/>
         <source>URL</source>
         <translation>URL</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="339"/>
+        <location filename="../hangman.cpp" line="308"/>
         <source>License</source>
         <translation>Licentie</translation>
     </message>
     <message>
-        <location filename="../hangman.cpp" line="342"/>
+        <location filename="../hangman.cpp" line="311"/>
         <source>Translations</source>
         <translation>Vertalingen</translation>
     </message>

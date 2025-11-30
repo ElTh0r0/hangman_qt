@@ -17,6 +17,7 @@
 Hangman::Hangman(QWidget *pParent)
     : QMainWindow(pParent), m_pUi(new Ui::Hangman) {
   m_pUi->setupUi(this);
+  this->setWindowTitle(qApp->applicationName());
   this->loadLanguage(Hangman::getSystemLanguage());
   m_pGame = new Game(QStringLiteral(":/data.dat"));
   this->setupActions();
@@ -135,7 +136,7 @@ void Hangman::createGallows() {
 void Hangman::updateWord(const QByteArray &baWord, const quint8 nWrong,
                          const quint16 nCorrectInRow, const quint16 nSumCorrect,
                          const quint16 nPlayedWords, const quint16 nQuantity) {
-  m_pUi->lbl_Word->setText(QString::fromLatin1(baWord));
+  m_pUi->lbl_Word->setText(QString::fromUtf8(baWord));
 
   switch (nWrong) {
     case 1:
@@ -265,8 +266,7 @@ auto Hangman::getSystemLanguage() -> QString {
 
 void Hangman::loadLanguage(const QString &sLang) {
   qApp->removeTranslator(&m_translator);
-  if (m_translator.load(":/" + qApp->applicationName().toLower() + "_" + sLang +
-                        ".qm")) {
+  if (m_translator.load(QStringLiteral(":/hangman_") + sLang + ".qm")) {
     qApp->installTranslator(&m_translator);
   } else {
     qWarning() << "Could not load translation :/" +
